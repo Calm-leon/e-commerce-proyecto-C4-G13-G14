@@ -12,13 +12,13 @@ exports.autenticarUsuario = async (req, res) => {
         let usuario = await Usuario.findOne({ email });
 
         if (!usuario){
-            return res.status(400).json({ msg: " el usuario no existe"})
+            return res.status(400).json({ msg: "El usuario no existe."})
         }
 
         // Validar el password
         const passwordCorrecto = await bcryptjs.compare(password, usuario.password);
         if (!passwordCorrecto){
-            return res.status(404).json({msg: " password incorrecto"});
+            return res.status(404).json({msg: "Password incorrecto."});
         }
 
         // Si todo es correcto: crear y firmar un token

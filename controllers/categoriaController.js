@@ -13,6 +13,17 @@ exports.leerCategoria = async (req, res) => {
     }
 };
 
+exports.leerCategoriaId = async (req, res) => {
+    const { id } = req.params
+    try {
+        const categoria = await Categoria.findById(id);
+        res.json({ categoria });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
 exports.crearCategoria = async (req, res) => {
     try {
         const categoria = new Categoria(req.body);
@@ -37,6 +48,7 @@ exports.actualizarCategoria = async (req, res) => {
     }
 
     categoria.nombre = req.body.nombre || categoria.nombre;
+    categoria.imagen = req.body.imagen || categoria.imagen;
     categoria.save();
     res.json({ categoria });
 };
@@ -44,7 +56,7 @@ exports.actualizarCategoria = async (req, res) => {
 exports.borrarCategoria = async (req, res) => {
     try {
         await Categoria.deleteOne({ _id: req.params.id });
-        res.json({ msg: "categoria eliminada" });
+        res.json({ msg: "Categoría Eliminada." });
     } catch (error) {
         console.log(error);
     }

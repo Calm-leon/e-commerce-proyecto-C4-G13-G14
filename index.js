@@ -4,12 +4,15 @@ const usuarioRouters = require("./routers/usuarioRouters");
 const authRouters = require("./routers/authRouters");
 const categoriaRouters = require("./routers/categoriaRouters");
 const productoRouters = require("./routers/productoRouters");
+const cors = require("cors");
 
-
-//conectar a la base de datos
+//Conectar a la base de datos
 conectarDB();
 
 const app = express();
+
+//Habilitar los cors
+app.use(cors());
 
 // Habilitar express.json
 app.use(express.json({extended: true}));

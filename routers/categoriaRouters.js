@@ -10,6 +10,11 @@ router.get(
     categoriaController.leerCategoria
 );
 
+router.get(
+    "/:id",
+    authMiddleware,
+    categoriaController.leerCategoriaId);
+
 router.post(
     "/",
     authMiddleware,
